@@ -1,0 +1,23 @@
+# Exported from Render on 2025-03-15T17:45:01Z
+services:
+- type: web
+  name: Airbnb-1
+  runtime: node
+  repo: https://github.com/yasirarfat5CJ/Airbnb
+  plan: free
+  envVars:
+  - key: SECRET
+    sync: false
+  - key: Atlasurl
+    sync: false
+  - key: Cloud_Api_Key
+    sync: false
+  - key: Cloud_Name
+    sync: false
+  - key: Cloud_Api_Secret
+    sync: false
+  region: oregon
+  buildCommand: npm install
+  startCommand: node app.js
+  autoDeploy: false
+version: "1"
