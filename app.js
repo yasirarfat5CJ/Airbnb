@@ -98,7 +98,7 @@ app.use((err, req, res, next) => {
   res.status(status).render("err.ejs", { message });
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT ;
 console.log('>>> dbUrl (from env) =', JSON.stringify(dbUrl).slice(0,200));
 
 app.listen(PORT, () => {
