@@ -11,7 +11,7 @@ const userSchema=new Schema({
         required:true,
     }
 });
-userSchema.plugin(passportLocalMongoose);//it is used becoz it automatically creates passwoed and username
+userSchema.plugin(passportLocalMongoose);//it is used becoz it automatically creates password and username
 
 const User=mongoose.model("User",userSchema);
 module.exports=User;

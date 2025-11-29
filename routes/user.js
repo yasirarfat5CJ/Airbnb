@@ -7,11 +7,11 @@ const { saveredirectUrl }=require("../middleware.js");
 const userController =require("../controllers/users.js");
 
 
-router.route('/singup')
+router.route('/signup')
 .get((req,res)=>{
-    res.render("users/singup.ejs");
+    res.render("users/signup.ejs");
 })
-.post(wrapAsync(userController.singuproute));
+.post(wrapAsync(userController.signuproute));
 
 
 

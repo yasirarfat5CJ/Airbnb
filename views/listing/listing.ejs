@@ -1,136 +1,139 @@
 <% layout("/layouts/boilerplate")%>
-<body>
-   
-   <style>
-    #filters{
-      display: flex;
-      flex-wrap:wrap ;
-      align-items: center;
-    }
-    .filter{
-      margin-right: 2rem;
-      
-      text-align: center;
-      margin-top: 2rem;
-      opacity: 0.7;
-    }
-    .filter p{
-      font-size: 0.8rem;
-    }
-    .filter:hover{
-      opacity: 1;
-      cursor: pointer;
-    }
-    .task-info{
-      display: none;
-    }
-    .tax-toggle{
-      border: 1px solid black;
-      border-radius: 1rem;
-      height: 3.25rem;
-      padding: 1rem;
-      margin-left: 5rem;
-      align-items: center;
-      display: flex;
-    }
-   </style>
 
-    <div id="filters"class="navbar-collapse">
-         <div class="filter">
-           <div> <i class="fa fa-fire" aria-hidden="true"></i></div>
-              <p>Trending</p>
-         </div>
-         <div class="filter">
-          <div><i class="fa-solid fa-mountain-city"></i></div>
-            <p>Iconic cities</p>
+  <body>
 
-       </div>
-       <div class="filter">
+    <style>
+      #filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .filter {
+        margin-right: 2rem;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 2rem;
+        opacity: 0.7;
+      }
+
+      .filter p {
+        font-size: 0.8rem;
+      }
+
+      .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .task-info {
+        display: none;
+      }
+
+      .tax-toggle {
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 5rem;
+        align-items: center;
+        display: flex;
+      }
+    </style>
+
+    <div id="filters" class="navbar-collapse">
+      <a href="/listing?category=trending" class="filter">
+        <div> <i class="fa fa-fire" aria-hidden="true"></i></div>
+        <p>Trending</p>
+      </a>
+      <a href="/listing?category=iconic-cities" class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic cities</p>
+      </a>
+      <a href="/listing?category=mountains" class="filter">
         <div><i class="fa-solid fa-mountain"></i></div>
-          <p>Mountains</p>
+        <p>Mountains</p>
+      </a>
 
-     </div>
-   
-   <div class="filter">
-    <div><i class="fa-solid fa-person-swimming"></i> </div>
-      <p>pools</p>
+      <a href="/listing?category=pools" class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i> </div>
+        <p>Pools</p>
+      </a>
+      <a href="/listing?category=farms" class="filter">
+        <div><i class="fa-solid fa-tractor"></i> </div>
+        <p>Farms</p>
+      </a>
+      <a href="/listing?category=arctic" class="filter">
+        <div><i class="fa-solid fa-snowflake"></i> </div>
+        <p>Arctic</p>
+      </a>
+      <a href="/listing?category=new" class="filter">
+        <div> <i class="fa-solid fa-key"></i></div>
+        <p>New</p>
+      </a>
 
- </div>
- <div class="filter">
-  <div><i class="fa-solid fa-tractor"></i> </div>
-    <p>Farms</p>
-</div>
-<div class="filter">
-  <div><i class="fa-solid fa-snowflake"></i> </div>
-    <p>Arctic</p>
-</div>
-<div class="filter">
-  <div><i class="fa-solid fa-mountain-city"></i></div>
-    <p>Iconic cities</p>
+      <a href="/listing?category=domes" class="filter">
+        <div><i class="fa-solid fa-landmark-dome"></i> </div>
+        <p>Domes</p>
+      </a>
+      <a href="/listing?category=play" class="filter">
+        <div><i class="fa-solid fa-play"></i> </div>
+        <p>Play</p>
+      </a>
 
-</div>
-<div class="filter">
-<div> <i class="fa-solid fa-key"></i></div>
-  <p>New</p>
-
-</div>
-
-<div class="filter">
-<div><i class="fa-solid fa-landmark-dome"></i> </div>
-<p>Domes</p>
-</div>
-<div class="filter">
-  <div><i class="fa-solid fa-play"></i> </div>
-  <p>Play</p>
-  </div>
-  
-    <div class="tax-toggle">
-      <div class="form-check-reverse form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+      <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        </div>
       </div>
+
+
     </div>
-  
-    
- </div>
 
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-    <% for(let lst of alllisting) { %>
-    <a href="/listing/<%= lst._id%>"class="listing-link">
-    <div class="card listing-card1" style="width: 18rem;">
-        <img src="<%= lst.image && lst.image.url ?lst.image.url :'/pictures/pexels-30nudos-adicora-164429726-11448272.jpg'  %>" class="card-img-top" alt="listing image">
-       <div class="card-img-overlay">
-              <h6 class="card-title"><%= lst.title %></h6>
+      <% for(let lst of alllisting) { %>
+        <a href="/listing/<%= lst._id%>" class="listing-link">
+          <div class="card listing-card1" style="width: 18rem;">
+            <img
+              src="<%= lst.image && lst.image.url ?lst.image.url :'/pictures/pexels-30nudos-adicora-164429726-11448272.jpg'  %>"
+              class="card-img-top" alt="listing image">
+            <div class="card-img-overlay">
+              <h6 class="card-title">
+                <%= lst.title %>
+              </h6>
               <p class="card-text"></p>
               <p class="card-text"><small></small></p>
             </div>
-         
-        <div class="card-body">
-          <h6 class="card-title"><b><%= lst.title %></b></h6>
-          <br>
-          &#8377;<%= lst.price %>/night
-          <i class="taxinfo">   +18% Gst </i>
-        </div>
-    </div>
-</a>
-    <% } %>
-    </div>
-</body>
 
-<script>
-  let taxSwitch=document.getElementById('flexSwitchCheckDefault');
-  taxSwitch.addEventListener("click",()=>{
-    let taxinfo=document.getElementsByClassName("taxinfo");
-    for(info of taxinfo){
-      if(info.style.display!="inline"){
-      info.style.display="inline";
-      }else{
-        info.style.display="none";
+            <div class="card-body">
+              <h6 class="card-title"><b>
+                  <%= lst.title %>
+                </b></h6>
+              <br>
+              &#8377;<%= lst.price %>/night
+                <i class="taxinfo"> +18% Gst </i>
+            </div>
+          </div>
+        </a>
+        <% } %>
+    </div>
+  </body>
+
+  <script>
+    let taxSwitch = document.getElementById('flexSwitchCheckDefault');
+    taxSwitch.addEventListener("click", () => {
+      let taxinfo = document.getElementsByClassName("taxinfo");
+      for (info of taxinfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        } else {
+          info.style.display = "none";
+        }
+
       }
 
-    }
-
     })
-  
+
   </script>

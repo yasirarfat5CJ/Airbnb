@@ -55,6 +55,7 @@ margin-right: 1rem;
 .card-img-top{
   border-radius: 1rem !important;
   width: 100% !important;
+  height: 250px !important;
   object-fit: cover !important;
 }
 .card-body{

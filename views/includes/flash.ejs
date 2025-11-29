@@ -1,4 +1,4 @@
-<%if(sucess && sucess.length) {%>
+<%if(typeof sucess !== "undefined" && sucess && sucess.length) {%>
 <div class="alert alert-success alert-dismissable fade show col-6 offset-3 " role="alert">
     <%=sucess%>
    
@@ -8,7 +8,7 @@
 
 <%}%>
 
-<%if(error && error.length) {%>
+<%if(typeof error !== "undefined" && error && error.length) {%>
     <div class="alert alert-danger alert-dismissable fade show col-6 offset-3 " role="alert">
         <%=error%>
        
