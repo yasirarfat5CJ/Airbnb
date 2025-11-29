@@ -106,5 +106,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(8080, () => {
-  console.log("server is listening ${http://localhost:8080}");
+  console.log("server is listening ${http://localhost:8080/listing}");
 });
