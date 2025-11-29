@@ -112,3 +112,26 @@ margin-right: 1rem;
     top:15px;
   
 } 
+
+/* Fix for review cards overflow */
+.card-body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Ensure review cards don't overflow */
+.row .card {
+    max-width: 100%;
+    box-sizing: border-box;
+}

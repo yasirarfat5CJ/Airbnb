@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 
@@ -24,27 +24,22 @@ const listings = require("./routes/listing1.js");
 const reviews = require("./routes/review1.js");
 const user = require("./routes/user.js");
 
-const dbUrl = "mongodb://127.0.0.1:27017/wanderlust";
-
-main()
-  .then(() => {
-    console.log("connected to DB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+const dbUrl = process.env.dbUrl ;
 
 async function main() {
   await mongoose.connect(dbUrl);
 }
+
+main()
+  .then(() => console.log("connected to DB"))
+  .catch((err) => console.log(err));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine('ejs', engine);
-app.use(express.static(path.join(__dirname, "/public")));
-
+app.use(express.static(path.join(__dirname, "public")));
 
 const sessionSecret = process.env.SECRET || 'devsecretfallback';
 
@@ -53,10 +48,8 @@ const store = MongoStore.create({
   crypto: {
     secret: sessionSecret,
   },
-  touchAfter: 24 * 3600,
-  httpOnly: true,
+  touchAfter: 24 * 3600
 });
-
 
 store.on("error", (err) => {
   console.log("ERROR in MONGO SESSION STORE", err);
@@ -68,7 +61,7 @@ const sessionOption = {
   resave: false,
   saveUninitialized: true,
   cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Date object
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   }
@@ -84,7 +77,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  res.locals.sucess = req.flash('sucess');
+  res.locals.success = req.flash('success'); // fixed spelling
   res.locals.error = req.flash('error');
   res.locals.curruser = req.user;
   next();
@@ -101,10 +94,13 @@ app.all("*", (req, res, next) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  let { status = 500, message = "something wents wrong" } = err;
-  res.render("err.ejs", { message });
+  let { status = 500, message = "something went wrong" } = err;
+  res.status(status).render("err.ejs", { message });
 });
 
-app.listen(8080, () => {
-  console.log("server is listening ${http://localhost:8080/listing}");
+const PORT = process.env.PORT || 8080;
+console.log('>>> dbUrl (from env) =', JSON.stringify(dbUrl).slice(0,200));
+
+app.listen(PORT, () => {
+  console.log(`server is listening at http://localhost:${PORT}/listing`);
 });
