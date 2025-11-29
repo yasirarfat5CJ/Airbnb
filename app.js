@@ -77,6 +77,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+  res.locals.success = req.flash ? req.flash('success') : [];
+  res.locals.error   = req.flash ? req.flash('error') : [];
+  res.locals.curruser = req.user || null;
+  next();
+});
+app.use((req, res, next) => {
   res.locals.success = req.flash('success'); // fixed spelling
   res.locals.error = req.flash('error');
   res.locals.curruser = req.user;
